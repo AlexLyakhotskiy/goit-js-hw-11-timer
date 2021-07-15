@@ -1,0 +1,28 @@
+body {
+  font-family: sans-serif;
+  display: flex;
+  width: 99vw;
+  height: 98vh;
+  font-size: 25px;
+  background-color: #09161c;
+  color: white;
+}
+
+.timer {
+  display: flex;
+  margin: auto;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.field:not(:last-child) {
+  margin-right: 20px;
+}
+
+.value {
+  font-size: 70px;
+}
