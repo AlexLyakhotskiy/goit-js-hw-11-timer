@@ -1,21 +1,7 @@
-const timerRefs = {
-  days: document.querySelector('[data-value="days"]'),
-  hours: document.querySelector('[data-value="hours"]'),
-  mins: document.querySelector('[data-value="mins"]'),
-  secs: document.querySelector('[data-value="secs"]'),
-};
-
-function timerOne({ days, hours, mins, secs }) {
-  timerRefs.days.textContent = days;
-  timerRefs.hours.textContent = hours;
-  timerRefs.mins.textContent = mins;
-  timerRefs.secs.textContent = secs;
-}
-
 class CountdownTimer {
   constructor({ selector, targetDate }) {
-    this.selector = selector;
     this.targetDate = targetDate;
+    this.selector = document.querySelector(`${selector}`);
 
     this.start();
   }
@@ -26,7 +12,7 @@ class CountdownTimer {
       const deltaTime = this.targetDate - currentDate;
       const time = this.getTimeComponents(deltaTime);
 
-      this.selector(time);
+      this.setValueInMarkup(time);
     }, 1000);
   }
 
@@ -44,9 +30,16 @@ class CountdownTimer {
   pad(value) {
     return String(value).padStart(2, '0');
   }
+
+  setValueInMarkup({ days, hours, mins, secs }) {
+    this.selector.querySelector('[data-value="days"]').textContent = days;
+    this.selector.querySelector('[data-value="hours"]').textContent = hours;
+    this.selector.querySelector('[data-value="mins"]').textContent = mins;
+    this.selector.querySelector('[data-value="secs"]').textContent = secs;
+  }
 }
 
 const timer = new CountdownTimer({
-  selector: timerOne,
+  selector: '#timer-1',
   targetDate: new Date('Jan 26, 2022'),
 });
